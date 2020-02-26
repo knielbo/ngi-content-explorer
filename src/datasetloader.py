@@ -25,6 +25,10 @@ class DatasetLoader():
                 for tag in tags:
                     content = jsonObject[tag]
                     # TODO: add preprocessor loop here
+                    if self.preprocessors is not None:
+                        for p in self.preprocessors:
+                            if tag in p.tag:
+                                content = p.preprocess(content)
                     datum.append(content)
                 data.append(datum)
 
