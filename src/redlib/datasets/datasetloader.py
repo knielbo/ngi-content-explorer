@@ -8,7 +8,7 @@ from pandas import DataFrame
 from datetime import datetime
 
 
-class DatasetLoader():
+class DatasetLoader:
     def __init__(self, preprocessors=None):
         self.preprocessors = preprocessors
 
@@ -28,6 +28,7 @@ class DatasetLoader():
                     if self.preprocessors is not None:
                         for p in self.preprocessors:
                             if tag in p.tag:
+                                #print(content)
                                 content = p.preprocess(content)
                     datum.append(content)
                 data.append(datum)
