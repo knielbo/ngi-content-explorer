@@ -1,12 +1,14 @@
 #!/home/knielbo/virtenvs/nuke/bin/python
 """
-
+Simple data loader class with preprocessor option
+Input:
+    - preprocessors: list of preprocessors
+    - jsonPath: str with path to reddit json object
+    - tags: list of tags to extract
 """
 import os
 import json
 from pandas import DataFrame
-from datetime import datetime
-
 
 class DatasetLoader:
     def __init__(self, preprocessors=None):
@@ -19,16 +21,14 @@ class DatasetLoader:
         data = list()
         with open(jsonPath, "r") as f:
             lignes = f.readlines()
-            for i, ligne in enumerate(lignes):# i for verbose
+            for i, ligne in enumerate(lignes[:10]):# i for verbose
                 jsonObject = json.loads(ligne)
                 datum = list()
                 for tag in tags:
                     content = jsonObject[tag]
-                    # TODO: add preprocessor loop here
                     if self.preprocessors is not None:
                         for p in self.preprocessors:
                             if tag in p.tag:
-                                #print(content)
                                 content = p.preprocess(content)
                     datum.append(content)
                 data.append(datum)
