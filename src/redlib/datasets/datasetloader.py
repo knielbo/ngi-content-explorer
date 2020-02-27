@@ -21,15 +21,18 @@ class DatasetLoader:
         data = list()
         with open(jsonPath, "r") as f:
             lignes = f.readlines()
-            for i, ligne in enumerate(lignes[:10]):# i for verbose
+            for i, ligne in enumerate(lignes):# i for verbose
                 jsonObject = json.loads(ligne)
                 datum = list()
                 for tag in tags:
                     content = jsonObject[tag]
+                    #print("xxxxxxxxxxxxxxxxxxxxx")
+                    #print(i, len(content), content)
                     if self.preprocessors is not None:
                         for p in self.preprocessors:
                             if tag in p.tag:
                                 content = p.preprocess(content)
+
                     datum.append(content)
                 data.append(datum)
 
