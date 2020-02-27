@@ -13,4 +13,5 @@ python qd-test.py --dataset ../dat/comments_MachineLearning --tag '["parent_id",
 
 end=`date +%s`
 runtime=$((end-start))
+echo
 echo $runtime
