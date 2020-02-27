@@ -34,6 +34,6 @@ def main():
     dl = DatasetLoader(preprocessors=[le, re0, cf, ut, re1, re2, re3])
     data = dl.load(jsonPath, tags, verbose=10e2)
 
-    data.to_csv(jsonPath, index=False)
+    data.to_csv(jsonPath + ".csv", index=False)
 if __name__=="__main__":
     main()
