@@ -26,8 +26,6 @@ class DatasetLoader:
                 datum = list()
                 for tag in tags:
                     content = jsonObject[tag]
-                    #print("xxxxxxxxxxxxxxxxxxxxx")
-                    #print(i, len(content), content)
                     if self.preprocessors is not None:
                         for p in self.preprocessors:
                             if tag in p.tag:
